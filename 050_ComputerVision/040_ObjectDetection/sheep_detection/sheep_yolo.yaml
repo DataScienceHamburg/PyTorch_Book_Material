@@ -1,0 +1,7 @@
+names:
+- sheep
+nc: 1
+path: ./.
+test: images/test
+train: images/train
+val: images/val
