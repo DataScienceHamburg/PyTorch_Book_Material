@@ -59,7 +59,9 @@ y = df_cat["Intrusion"]
 print(f"X shape: {X.shape}, y shape: {y.shape}")
 
 #%% split data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, stratify=y, random_state=42)
 print(f"X_train shape: {X_train.shape}, X_test shape: {X_test.shape}")
 
 
+
+# %%

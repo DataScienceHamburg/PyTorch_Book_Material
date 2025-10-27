@@ -212,4 +212,17 @@ print(f"Dummy Classifier Accuracy: {dummy_clf.score(y_test_true, y_test_pred_cla
 # %%
 print(classification_report(y_test_true, y_test_pred_class))
 
+
+#%% get the dimensions of train_loader
+X_train_batch, _ = next(iter(train_loader))
+print(X_train_batch.shape)
+
+# %%
+# %% export the model as ONNX
+dummy_input = torch.randn(1, 1, 32, 32)
+torch.onnx.export(model=model.to("cpu"), 
+                 args=dummy_input, 
+                 f="bin_class_model.onnx", 
+                 verbose=True,
+                 opset_version=12)  # Use older opset version to avoid float4 type issues
 # %%

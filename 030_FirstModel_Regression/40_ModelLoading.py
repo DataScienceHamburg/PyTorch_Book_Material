@@ -25,3 +25,15 @@ show_model_parameters(model)
 model.load_state_dict(torch.load('models/Model1.pth'))
 # %%
 show_model_parameters(model)
+
+#%% save as onnx file
+dummy_input = torch.randn(1, 37)
+torch.onnx.export(model=model, 
+                 args=dummy_input, 
+                 f="model.onnx", 
+                 verbose=True,
+                 opset_version=12)
+# %% create a dummy inference for the model
+dummy_input = torch.randn(1, 37)
+model(dummy_input)
+# %%
