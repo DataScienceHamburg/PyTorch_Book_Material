@@ -77,9 +77,9 @@ plt.bar(unique - width, percentages_train, width, label='Training')
 plt.bar(unique, percentages_val, width, label='Validation') 
 plt.bar(unique + width, percentages_test, width, label='Test')
 
-plt.xlabel('Klasse [-]')
-plt.ylabel('Anteil [%]')
-plt.title('Klassenverteilung in Training-, Validierungs- und Testset')
+plt.xlabel('Class [-]')
+plt.ylabel('Percentage [%]')
+plt.title('Class Distribution in Training-, Validation- and Testset')
 plt.xticks([0, 1, 2])
 plt.legend()
 
@@ -173,12 +173,12 @@ for epoch in range(EPOCHS):
 
 # %% visualize training and validationloss
 plt.figure()
-sns.lineplot(x=list(range(EPOCHS)), y=train_losses, label='Trainingsverlust')
-sns.lineplot(x=list(range(EPOCHS)), y=val_losses, label='Validierungsverlust')
+sns.lineplot(x=list(range(EPOCHS)), y=train_losses, label='Training Loss')
+sns.lineplot(x=list(range(EPOCHS)), y=val_losses, label='Validation Loss')
 plt.xticks(range(0, EPOCHS, 5))
-plt.xlabel('Epoche [-]')
-plt.ylabel('Verlust [-]')
-plt.title('Training und Validierungsverlust über die Epochen')
+plt.xlabel('Epoch [-]')
+plt.ylabel('Loss [-]')
+plt.title('Training and Validation Loss over Epochs')
 plt.legend()
 
 #%% create test predictions for multiclass classification
@@ -207,9 +207,9 @@ with torch.no_grad():
 cm = confusion_matrix(y_true=y_test_true, y_pred=y_test_pred_class)
 plt.figure()
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-plt.xlabel('Vorhergesagte Klasse')
-plt.ylabel('Wahre Klasse')
-plt.title('Konfusionsmatrix')
+plt.xlabel('Predicted Class')
+plt.ylabel('True Class')
+plt.title('Confusion Matrix')
 
 #%% accuracy score
 accuracy_score(y_true=y_test_true, y_pred=y_test_pred_class)

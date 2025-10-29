@@ -79,9 +79,9 @@ for epoch in range(EPOCHS):
 plt.figure()
 sns.lineplot(x=list(range(EPOCHS)), y=train_losses)
 plt.xticks(range(EPOCHS))
-plt.xlabel('Epoche [-]')
-plt.ylabel('Verlust [-]')
-plt.title('Trainingsverlust und Epochen')
+plt.xlabel('Epoch [-]')
+plt.ylabel('Loss [-]')
+plt.title('Training Loss and Epochs')
 
 #%% create test predictions - FIXED: Use probabilities for ROC curve
 y_test_pred_proba, y_test_pred_class, y_test_true = [], [], []
@@ -109,7 +109,7 @@ plt.figure()
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
 plt.xlabel('Predicted')
 plt.ylabel('True')
-plt.title('Konfusionsmatrix (binäre Klassifikation)')
+plt.title('Confusion Matrix (binary classification)')
 
 #%% accuracy score
 accuracy_score(y_true=y_test_true, y_pred=y_test_pred_class)
@@ -125,12 +125,12 @@ roc_auc = auc(fpr, tpr)
 
 plt.figure(figsize=(8, 6))
 plt.plot(fpr, tpr, color='blue', lw=2, label=f'AUC = {roc_auc:.2f}')
-plt.plot([0, 1], [0, 1], color='red', lw=1, linestyle='--', label='Zufälliger Klassifikator')
+plt.plot([0, 1], [0, 1], color='red', lw=1, linestyle='--', label='Random Classifier')
 plt.xlim([0.0, 1.0])
 plt.ylim([0.0, 1.05])
 plt.xlabel('FPR [-]')
 plt.ylabel('TPR [-]')
-plt.title('ROC Kurve (binäre Klassifikation)')
+plt.title('ROC Curve (binary classification)')
 plt.legend(loc="lower right")
 plt.grid(True, alpha=0.3)
 

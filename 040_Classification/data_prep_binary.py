@@ -37,7 +37,7 @@ df_cat.shape
 
 #%% visualize the distribution of the target variable
 sns.countplot(x="Intrusion", data=df_cat)
-plt.title("Zielvariable Ungleichgewicht")
+plt.title("Target Variable Imbalance")
 
 # %% visualise the correlation of independent variables
 # Create correlation matrix
@@ -47,7 +47,7 @@ corr_matrix = df_cat.corr()
 plt.figure(figsize=(12, 8))
 mask = np.triu(np.ones_like(corr_matrix), k=1).T
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0, fmt='.2f', mask=mask)
-plt.title('Korrelationsmatrix der Variablen')
+plt.title('Correlation Matrix of Variables')
 plt.tight_layout()
 
 
