@@ -9,13 +9,13 @@ import matplotlib.pyplot as plt
 flights = sns.load_dataset("flights")
 
 # Print data info for debugging
-print(f"Form des ursprünglichen Datensatzes: {flights.shape}")
-print(f"Datumsbereich: {flights['year'].min()} - {flights['year'].max()}")
-print(f"Anzahl der Monate: {len(flights)}")
+print(f"Form of the original dataset: {flights.shape}")
+print(f"Date range: {flights['year'].min()} - {flights['year'].max()}")
+print(f"Number of months: {len(flights)}")
 
 # Create time index starting from 0
 # This is a crucial step for pytoch-forecasting
-flights["time_idx"] = range(len(flights)).astype(int)
+flights["time_idx"] = np.arange(len(flights), dtype=int)
 
 # Add additional time features
 # We treat the original 'month' column as a known categorical feature
@@ -35,27 +35,27 @@ MAX_PREDICTION_LENGTH = 12
 # Use the last 24 months for validation to ensure we have enough data for sequences
 TRAINING_CUTOFF = len(flights) - 12
 
-print(f"Trainingstrennpunkt: {TRAINING_CUTOFF}")
-print(f"Trainingsdatenpunkte: {TRAINING_CUTOFF}")
-print(f"Validierungsdatenpunkte: {len(flights) - TRAINING_CUTOFF}")
+print(f"Training split point: {TRAINING_CUTOFF}")
+print(f"Training data points: {TRAINING_CUTOFF}")
+print(f"Validation data points: {len(flights) - TRAINING_CUTOFF}")
 
 
 #%% Split data properly
 train_data = flights.iloc[:TRAINING_CUTOFF].copy()
 val_data = flights.iloc[TRAINING_CUTOFF:].copy()
 
-print(f"Form der Trainingsdaten: {train_data.shape}")
-print(f"Form der Validierungsdaten: {val_data.shape}")
-print(f"Zeitindex-Bereich der Trainingsdaten: {train_data['time_idx'].min()} - {train_data['time_idx'].max()}")
-print(f"Zeitindex-Bereich der Validierungsdaten: {val_data['time_idx'].min()} - {val_data['time_idx'].max()}")
+print(f"Form of the training data: {train_data.shape}")
+print(f"Form of the validation data: {val_data.shape}")
+print(f"Time index range of the training data: {train_data['time_idx'].min()} - {train_data['time_idx'].max()}")
+print(f"Time index range of the validation data: {val_data['time_idx'].min()} - {val_data['time_idx'].max()}")
 
 #%% visualise train and val data
 plt.figure(figsize=(10, 6))
 sns.lineplot(x="time_idx", y="passengers", data=train_data, label='train')
 sns.lineplot(x="time_idx", y="passengers", data=val_data, label='val')
-plt.title('Trainings- und Validierungsdaten')
-plt.xlabel('Zeitindex')
-plt.ylabel('Passagiere')
+plt.title('Training and Validation Data')
+plt.xlabel('Time Index')
+plt.ylabel('Passengers')
 plt.show()
 
 #%%
@@ -149,19 +149,19 @@ min_length = min(len(actual_flat), len(predicted_flat))
 actual_flat = actual_flat[:min_length]
 predicted_flat = predicted_flat[:min_length]
 
-print(f"Form der tatsächlichen Werte: {actual_flat.shape}")
-print(f"Form der vorhergesagten Werte: {predicted_flat.shape}")
+print(f"Form of the actual values: {actual_flat.shape}")
+print(f"Form of the predicted values: {predicted_flat.shape}")
 
 # Time series comparison
 plt.figure(figsize=(10, 6))
 x_act = range(len(actual_flat))
 y_act = actual_flat
 y_pred = predicted_flat
-sns.lineplot(x=x_act, y=y_act, label='tatsächlich', color='black')
-sns.lineplot(x=x_act, y=y_pred.squeeze(), label='vorhergesagt', color='red')
-plt.ylabel('Passagierzahlen [-]')
-plt.xlabel('Monat [-]')
-plt.title('Vorhersage vs. tatsächlicher Wert')
+sns.lineplot(x=x_act, y=y_act, label='actual', color='black')
+sns.lineplot(x=x_act, y=y_pred.squeeze(), label='predicted', color='red')
+plt.ylabel('Passenger Numbers [-]')
+plt.xlabel('Month [-]')
+plt.title('Prediction vs. Actual Value')
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.show()

@@ -71,13 +71,13 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
 # Show content image in first subplot
 content_image = imshow(content_img)
 ax1.imshow(content_image)
-ax1.set_title('Inhaltsbild')
+ax1.set_title('Reference Image')
 ax1.axis('off')
 
 # Show style image in second subplot
 style_image = imshow(style_img)
 ax2.imshow(style_image)
-ax2.set_title('Stilgebendes Bild')
+ax2.set_title('Style Image')
 ax2.axis('off')
 
 plt.show()

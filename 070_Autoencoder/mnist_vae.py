@@ -224,9 +224,9 @@ for epoch in range(1, EPOCHS + 1):
 plt.figure(figsize=(10, 6))
 sns.lineplot(x=range(1, EPOCHS + 1), y=loss_train, label="train")
 sns.lineplot(x=range(1, EPOCHS + 1), y=loss_val, label="val")
-plt.title("VAE Trainings- und Validierungsverlust")
-plt.xlabel("Epoche [-]")
-plt.ylabel("Verlust [-]")
+plt.title("VAE Training- and Validation Loss")
+plt.xlabel("Epoch [-]")
+plt.ylabel("Loss [-]")
 plt.show()
 
 #%% Generate new digits
@@ -241,6 +241,7 @@ with torch.no_grad():
     plt.figure(figsize=(10, 10))
     plt.axis('off')
     plt.imshow(grid.permute(1, 2, 0).squeeze(), cmap='gray')
-    plt.title("Generierte Ziffern")
+    plt.title("Generated Digits")
     plt.tight_layout()
     plt.show()
+# %%

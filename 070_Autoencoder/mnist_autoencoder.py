@@ -160,8 +160,8 @@ for epoch in range(1, EPOCHS + 1):
 # %% visualise train, val loss
 sns.lineplot(x=range(1, EPOCHS + 1), y=loss_train, label="train")
 sns.lineplot(x=range(1, EPOCHS + 1), y=loss_val, label="val")
-plt.title("Trainings- und Validierungsverlust")
+plt.title("Training- and Validation Loss")
 plt.xlabel("Epoche [-]")
-plt.ylabel("Verlust [-]")
+plt.ylabel("Loss [-]")
 plt.show()
 # %%

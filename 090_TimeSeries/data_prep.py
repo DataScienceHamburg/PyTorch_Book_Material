@@ -24,9 +24,9 @@ flights.head(2)
 
 # %% Visualization
 sns.lineplot(x=range(len(flights)), y='passengers', data=flights)
-plt.title('Flugpassagiere pro Monat')
-plt.xlabel('Monat')
-plt.ylabel('Anzahl der Passagiere')
+plt.title('Number of Flight Passengers per Month')
+plt.xlabel('Month')
+plt.ylabel('Number of Passengers')
 plt.show()
 
 # %% Convert year and month to datetime
@@ -56,11 +56,11 @@ print(f"X_test shape: {X_test.shape}")
 print(f"y_test shape: {y_test.shape}")
 #%% Visualisierung des Train-/Test-Splits
 plt.figure(figsize=(10, 6))
-sns.lineplot(data=flights, x='year_month', y='passengers', label='Gesamte Daten')
+sns.lineplot(data=flights, x='year_month', y='passengers', label='Total Data')
 # Hier musst du die Indizes an die Zeitstempel anpassen
 split_date = flights['year_month'].iloc[clip_point + seq_len]
 plt.axvline(x=split_date, color='red', linestyle='--', label='Train/Test Split')
-plt.title('Flugpassagiere pro Monat')
+plt.title('Number of Flight Passengers per Month')
 plt.legend()
 plt.show()
 # %% Dataset

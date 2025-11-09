@@ -21,29 +21,29 @@ else:
 data = dataset[0]
 data = data.to(device) 
 
-print(f'Anzahl der Graphen: {len(dataset)}')
-print(f'Anzahl der Merkmale: {dataset.num_features}')
-print(f'Anzahl der Klassen: {dataset.num_classes}')
-print(f'Graph-Objekt: {data}')
-print(f'Ist ein gerichteter Graph: {data.is_directed()}')
-print(f'Anzahl der Knoten: {data.num_nodes}')
-print(f'Anzahl der Kanten: {data.num_edges}')
-print(f'Anzahl der Trainingsknoten: {data.train_mask.sum()}')
-print(f'Anzahl der Validierungsknoten: {data.val_mask.sum()}')
-print(f'Anzahl der Testknoten: {data.test_mask.sum()}')
-print(f"Anzahl der Knoten im Graphen: {data.num_nodes}")
+print(f'Number of graphs: {len(dataset)}')
+print(f'Number of features: {dataset.num_features}')
+print(f'Number of classes: {dataset.num_classes}')
+print(f'Graph object: {data}')
+print(f'Is the graph directed: {data.is_directed()}')
+print(f'Number of nodes: {data.num_nodes}')
+print(f'Number of edges: {data.num_edges}')
+print(f'Number of training nodes: {data.train_mask.sum()}')
+print(f'Number of validation nodes: {data.val_mask.sum()}')
+print(f'Number of test nodes: {data.test_mask.sum()}')
+print(f"Number of nodes in the graph: {data.num_nodes}")
 
 #%% get number of elements per class
 # Get class distribution
 class_counts = torch.bincount(data.y)
 for class_idx, count in enumerate(class_counts):
-    print(f'Klasse {class_idx}: {count.item()} Knoten')
+    print(f'Class {class_idx}: {count.item()} nodes')
 
 # Calculate dummy classifier accuracy (majority class)
 majority_class = torch.argmax(class_counts)
 dummy_predictions = torch.full_like(data.y, majority_class)
 dummy_acc = (dummy_predictions[data.test_mask] == data.y[data.test_mask]).float().mean()
-print(f'\nGenauigkeit des Dummy-Klassifikators: {dummy_acc:.4f}')
+print(f'\nAccuracy of the Dummy Classifier: {dummy_acc:.4f}')
 
 
 
@@ -115,12 +115,12 @@ for epoch in range(num_epochs):
     val_acc_list.append(val_acc)
 
     if (epoch + 1) % 20 == 0:
-        print(f'Epoche: {epoch + 1:03d} | Verlust: {epoch_loss:.4f} | '
-              f'Training Acc: {train_acc:.4f} | Validierungs-Accuracy: {val_acc:.4f}')
+        print(f'Epoch: {epoch + 1:03d} | Loss: {epoch_loss:.4f} | '
+              f'Training Acc: {train_acc:.4f} | Validation Accuracy: {val_acc:.4f}')
 
 #%% Evaluation on the Test Set
 final_test_acc = test(model, data, data.test_mask)
-print(f'\nFinale Test-Accuracy: {final_test_acc:.4f}')
+print(f'\nFinal Test Accuracy: {final_test_acc:.4f}')
 
 #%% Plotting the training loss and accuracy
 # Plot the loss and accuracy curves during training
@@ -130,13 +130,13 @@ fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
 
 # Plot loss
 sns.lineplot(data=loss_list, ax=ax1, color='blue', label='Training Loss')
-ax1.set_ylabel('Verlust [-]')
-ax1.set_title('Modell-Training-Performance')
+ax1.set_ylabel('Loss [-]')
+ax1.set_title('Model Training Performance')
 
 # Plot accuracies
 sns.lineplot(data=train_acc_list, ax=ax2, color='orange', linestyle='--', label='Train Accuracy')
 sns.lineplot(data=val_acc_list, ax=ax2, color='green', linestyle='--', label='Validation Accuracy') 
-ax2.set_xlabel('Epoche [-]')
+ax2.set_xlabel('Epoch [-]')
 ax2.set_ylabel('Accuracy [-]')
 plt.tight_layout()
 plt.show()
@@ -160,8 +160,9 @@ sns.scatterplot(
     s=50,
     alpha=0.8
 )
-plt.title('t-SNE Visualisierung der Knoten-Embeddings')
-plt.xlabel('t-SNE Komponente 1')
-plt.ylabel('t-SNE Komponente 2')
-plt.legend(title='Klasse')
+plt.title('t-SNE Visualization of the Node Embeddings')
+plt.xlabel('t-SNE Component 1')
+plt.ylabel('t-SNE Component 2')
+plt.legend(title='Class')
 plt.show()
+# %%

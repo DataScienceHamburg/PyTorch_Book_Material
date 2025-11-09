@@ -1,1 +1,7 @@
 *.pyc
+*.pth
+*.pt
+runs/
+raw/
+*tfevents*
+*.yaml

@@ -194,8 +194,8 @@ for epoch in range(EPOCHS):
 sns.lineplot(x=range(len(losses_train)), y=losses_train, label='Training')
 sns.lineplot(x=range(len(losses_val)), y=losses_val, label='Validierung')
 plt.xlabel('Epoch [-]')
-plt.ylabel('Verlust [-]')
-plt.title('Verlustkurve für Trainings- und Validierungsdaten')
+plt.ylabel('Loss [-]')
+plt.title('Loss curve for training and validation data')
 plt.legend()
 plt.xticks(range(len(losses_train)))  # Set integer ticks
 plt.show()
@@ -215,9 +215,9 @@ with torch.no_grad():
 cm = confusion_matrix(y_true=y_true, y_pred=y_pred)
 plt.figure(figsize=(10,8))
 sns.heatmap(cm, annot=True, fmt='.0f')
-plt.xlabel('Vorhergesagte Klasse')
-plt.ylabel('Tatsächliche Klasse') 
-plt.title('Finger-Modell:Konfusionsmatrix')
+plt.xlabel('Predicted Class')
+plt.ylabel('Actual Class') 
+plt.title('Finger Model: Confusion Matrix')
 plt.show()
 
 #%% accuracy

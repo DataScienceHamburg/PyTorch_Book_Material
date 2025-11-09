@@ -62,13 +62,13 @@ matchmaking_data = create_matchmaking_dataset(person_interests=person_interests)
 
 
 #%% Print the dataset properties to show what was created
-print(f"Anzahl der Knoten (Personen): {matchmaking_data.num_nodes}")
-print(f"Anzahl der Knotenmerkmale (Interessen): {matchmaking_data.num_node_features}")
-print(f"Anzahl der bestehenden Freundschaften (Kanten): {matchmaking_data.num_edges}")
+print(f"Number of nodes (people): {matchmaking_data.num_nodes}")
+print(f"Number of node features (interests): {matchmaking_data.num_node_features}")
+print(f"Number of existing friendships (edges): {matchmaking_data.num_edges}")
 
-print("\n--- Hauptkomponenten des Datenobjekts ---")
-print(f"data.x: Form {matchmaking_data.x.shape} - Die Merkmalsmatrix für jede Person.")
-print(f"data.edge_index: Form {matchmaking_data.edge_index.shape}")
+print("\n--- Main components of the data object ---")
+print(f"data.x: shape {matchmaking_data.x.shape} - The feature matrix for each person.")
+print(f"data.edge_index: shape {matchmaking_data.edge_index.shape}")
 person_names = list(person_interests.keys())
 
 
@@ -98,7 +98,7 @@ def visualize_graph(data: Data, node_names=None):
         labels = {i: str(i) for i in range(data.num_nodes)}
     nx.draw_networkx_labels(G, pos, labels=labels, font_size=14, font_color="#FFFFFF", ax=ax1)
     
-    ax1.set_title("Freundschaftsgraph")
+    ax1.set_title("Friendship Graph")
     ax1.axis("off")
 
     # Interests visualization
@@ -111,8 +111,8 @@ def visualize_graph(data: Data, node_names=None):
         ax2.bar([xi + i*width for xi in x], interests_values, width, 
                 label=interest, alpha=0.7)
     
-    ax2.set_ylabel("Merkmalswert [-]")
-    ax2.set_title("Merkmale der Personen")
+    ax2.set_ylabel("Feature Value [-]")
+    ax2.set_title("Features of the People")
     ax2.set_xticks([xi + width for xi in x])
     ax2.set_xticklabels(node_names, rotation=45)
     ax2.legend()

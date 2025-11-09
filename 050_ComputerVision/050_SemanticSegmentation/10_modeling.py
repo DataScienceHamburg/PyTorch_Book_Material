@@ -36,12 +36,12 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
 # Plot original image
 ax1.imshow(img)
-ax1.set_title('Original-Bild')
+ax1.set_title('Original-Image')
 ax1.axis('off')
 
 # Plot segmentation mask
 ax2.imshow(mask)
-ax2.set_title('Segmentierungsmaske') 
+ax2.set_title('Segmentation Mask') 
 ax2.axis('off')
 
 plt.tight_layout()
@@ -171,7 +171,7 @@ fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 6))
 
 # Plot original image
 ax1.imshow(sample_image)
-ax1.set_title('Beispiel Validierungsbild')
+ax1.set_title('Example Validation Image')
 ax1.axis('off')
 
 # Plot ground truth mask
@@ -181,7 +181,7 @@ ax2.axis('off')
 
 # Plot prediction mask
 ax3.imshow(sample_mask_pred)
-ax3.set_title('Vorhergesagte Maske')
+ax3.set_title('Predicted Mask')
 ax3.axis('off')
 
 plt.tight_layout()

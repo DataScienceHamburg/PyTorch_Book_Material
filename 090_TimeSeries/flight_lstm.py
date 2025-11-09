@@ -55,9 +55,9 @@ for epoch in range(EPOCHS):
 
 #%% Loss Plot
 sns.lineplot(x=range(EPOCHS), y=loss_train)
-plt.xlabel('Epoche [-]')
-plt.ylabel('Verlust [-]')
-plt.title('Verlust')
+plt.xlabel('Epoch [-]')
+plt.ylabel('Loss [-]')
+plt.title('Loss')
 
 # %% Create Predictions
 X_test_torch, y_test_torch = next(iter(test_loader))
@@ -66,11 +66,11 @@ with torch.no_grad():
 y_act = y_test_torch.numpy().squeeze()
 x_act = range(y_act.shape[0])
 #%%
-sns.lineplot(x=x_act, y=y_act, label = 'tatsächlich',color='black')
-sns.lineplot(x=x_act, y=y_pred.squeeze(), label = 'vorhergesagt',color='red')
-plt.ylabel('Normierte Passagierzahlen [-]')
-plt.xlabel('Monat [-]')
-plt.title('Vorhersage vs. tatsächlicher Wert')
+sns.lineplot(x=x_act, y=y_act, label = 'actual',color='black')
+sns.lineplot(x=x_act, y=y_pred.squeeze(), label = 'predicted',color='red')
+plt.ylabel('Normalized Passenger Numbers [-]')
+plt.xlabel('Month [-]')
+plt.title('Prediction vs. Actual Value')
 
 # %% correlation plot
 sns.scatterplot(x=y_act, y=y_pred.squeeze(), label = 'Predicted',color='red', alpha=0.5)

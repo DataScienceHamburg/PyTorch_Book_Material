@@ -161,11 +161,11 @@ for epoch in range(EPOCHS):
 
 # %%
 plt.figure(figsize=(10,6))
-sns.lineplot(x=range(EPOCHS), y=train_losses, label='Trainingsverlust [-]')
-sns.lineplot(x=range(EPOCHS), y=val_losses, label='Validierungsverlust [-]')
-plt.xlabel('Epoche [-]')
-plt.ylabel('Verlust [-]')
-plt.title('Trainings und Validierungsverlust über Epochen')
+sns.lineplot(x=range(EPOCHS), y=train_losses, label='Training loss [-]')
+sns.lineplot(x=range(EPOCHS), y=val_losses, label='Validation loss [-]')
+plt.xlabel('Epoch [-]')
+plt.ylabel('Loss [-]')
+plt.title('Training- and Validation loss over epochs')
 plt.xticks(range(0, EPOCHS, 5))
 plt.legend()
 
