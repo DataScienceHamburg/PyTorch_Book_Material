@@ -126,17 +126,17 @@ trainer.fit(model, data_module)
 plt.figure(figsize=(10, 6))
 
 # Trainings-Verlust plotten (pro Batch)
-sns.lineplot(x=range(len(model.training_losses)), y=model.training_losses, label='Trainings-Verlust (pro Batch)')
+sns.lineplot(x=range(len(model.training_losses)), y=model.training_losses, label='Training Loss (per Batch)')
 
 # Validierungs-Verlust plotten (pro Epoche)
 if len(model.validation_losses) > 0:
     # X-Koordinaten für Validierungs-Verlust berechnen (jede Epoche)
     val_x = np.linspace(0, len(model.training_losses)-1, len(model.validation_losses))
-    sns.lineplot(x=val_x, y=model.validation_losses, label='Validierungs-Verlust (pro Epoche)', marker='o')
+    sns.lineplot(x=val_x, y=model.validation_losses, label='Validation Loss (per Epoch)', marker='o')
 
-plt.title('Trainings- und Validierungs-Verlust über Zeit')
-plt.xlabel('Trainingsschritte') 
-plt.ylabel('Verlust')
+plt.title('Training and Validation Loss Over Time')
+plt.xlabel('Training Steps') 
+plt.ylabel('Loss')
 plt.legend()
 plt.grid(True, alpha=0.3)
 plt.show()
