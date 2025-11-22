@@ -49,7 +49,6 @@ for params in model.parameters():
 # %% overwrite the classifier
 model.classifier = nn.Sequential(OrderedDict([
     ('fc1', nn.Linear(in_features=1024, out_features=4)),
-    ('Output', nn.Softmax(dim=1))
 ]))
 
 # %% Optimizer and Loss Function
@@ -93,7 +92,8 @@ for _, (X_batch, y_batch) in enumerate(test_loader):
     # forward pass
     with torch.no_grad():
         y_test_pred_batch = model(X_batch).round().numpy()
-        y_test_pred.extend(np.argmax(y_test_pred_batch, axis=1).tolist())
+        y_test_pred_class = np.argmax(y_test_pred_batch, axis=1).tolist()
+        y_test_pred.extend(y_test_pred_class)
         y_test_true.extend(y_batch.numpy().tolist())
         
         
