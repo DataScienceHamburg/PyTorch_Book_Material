@@ -137,9 +137,9 @@ with torch.no_grad():
 
 #%% visualize the rating_true and rating_pred
 sns.regplot(x=rating_true, y=rating_pred)
-plt.xlabel('Tatsächliche Bewertungen')
-plt.ylabel('Vorhergesagte Bewertungen')
-plt.title('Tatsächliche vs. Vorhergesagte Bewertungen')
+plt.xlabel('Actual Ratings')
+plt.ylabel('Predicted Ratings')
+plt.title('Actual vs. Predicted Ratings')
 
 
 #%% implement recall at k
